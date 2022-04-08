@@ -211,37 +211,85 @@ namespace Ejercicio_Guía_8
             {
                 int num = int.Parse(txtNumero.Text);
 
-                Array.Resize<int>(ref arreglo_numeros, i + 1); //Incrementamos el arreglo en base al nuevo valor ingresado
-                arreglo_numeros[i] = num; //Asignamos ese valor a la posición i del arreglo
-                Array.Resize<Button>(ref Arreglo, i + 1); //Incrementamos el arreglo de botones
-                Arreglo[i] = new Button(); //Creando un nuevo botón i
-                Arreglo[i].Text = arreglo_numeros[i].ToString(); //El texto del botón será el valor ingresado en la posición i 
-                Arreglo[i].Height = 50; //Altura del botón
-                Arreglo[i].Width = 50; //Ancho del botón
-                Arreglo[i].BackColor = Color.FromArgb(222,17,84);
-                Arreglo[i].ForeColor = Color.White;
-                Arreglo[i].Location = new Point(xo, yo) + new Size(-20, 0);
-
-                //Para dibuajr el árbol y crear los niveles se hace
-                if ((i + 1) == Math.Pow(2, n + 1)) 
+                if (arreglo_numeros == null)
                 {
-                    n++; //Se incrementa n
-                    tam = tam / 2; //Para colocar el nodo justo en medio del tab page
-                    xo = tam; //Xo tendrá el mismo valor que el de tam
-                    yo += 60; //Incrementando la Y en 60 para que el siguiente nivel se dibuje 60 espacios más abajo
+
+                    Array.Resize<int>(ref arreglo_numeros, i + 1); //Incrementamos el arreglo en base al nuevo valor ingresado
+                    arreglo_numeros[i] = num; //Asignamos ese valor a la posición i del arreglo
+                    Array.Resize<Button>(ref Arreglo, i + 1); //Incrementamos el arreglo de botones
+                    Arreglo[i] = new Button(); //Creando un nuevo botón i
+                    Arreglo[i].Text = arreglo_numeros[i].ToString(); //El texto del botón será el valor ingresado en la posición i 
+                    Arreglo[i].Height = 50; //Altura del botón
+                    Arreglo[i].Width = 50; //Ancho del botón
+                    Arreglo[i].BackColor = Color.FromArgb(222, 17, 84);
+                    Arreglo[i].ForeColor = Color.White;
+                    Arreglo[i].Location = new Point(xo, yo) + new Size(-20, 0);
+
+                    //Para dibuajr el árbol y crear los niveles se hace
+                    if ((i + 1) == Math.Pow(2, n + 1))
+                    {
+                        n++; //Se incrementa n
+                        tam = tam / 2; //Para colocar el nodo justo en medio del tab page
+                        xo = tam; //Xo tendrá el mismo valor que el de tam
+                        yo += 60; //Incrementando la Y en 60 para que el siguiente nivel se dibuje 60 espacios más abajo
+                    }
+                    else
+                    {
+                        xo += (2 * tam); //Si en cierto caso no se cumple lo anterior el nodo se móvera en x
+                    }
+
+                    i++; //Incrementando i
+                    estado = true;
+                    ec = false;
+                    tabPage1.Refresh(); //Refrescando el tabPage
+                    txtNumero.Clear();
+                    txtNumero.Focus();
+                    button1_Click_1(null, null);
                 }
+
+
+                else if (arreglo_numeros.Contains<int>(num))
+                {
+                    MessageBox.Show("Prueba");
+                }
+
                 else
                 {
-                    xo += (2 * tam); //Si en cierto caso no se cumple lo anterior el nodo se móvera en x
+                    Array.Resize<int>(ref arreglo_numeros, i + 1); //Incrementamos el arreglo en base al nuevo valor ingresado
+                    arreglo_numeros[i] = num; //Asignamos ese valor a la posición i del arreglo
+                    Array.Resize<Button>(ref Arreglo, i + 1); //Incrementamos el arreglo de botones
+                    Arreglo[i] = new Button(); //Creando un nuevo botón i
+                    Arreglo[i].Text = arreglo_numeros[i].ToString(); //El texto del botón será el valor ingresado en la posición i 
+                    Arreglo[i].Height = 50; //Altura del botón
+                    Arreglo[i].Width = 50; //Ancho del botón
+                    Arreglo[i].BackColor = Color.FromArgb(222, 17, 84);
+                    Arreglo[i].ForeColor = Color.White;
+                    Arreglo[i].Location = new Point(xo, yo) + new Size(-20, 0);
+
+                    //Para dibuajr el árbol y crear los niveles se hace
+                    if ((i + 1) == Math.Pow(2, n + 1))
+                    {
+                        n++; //Se incrementa n
+                        tam = tam / 2; //Para colocar el nodo justo en medio del tab page
+                        xo = tam; //Xo tendrá el mismo valor que el de tam
+                        yo += 60; //Incrementando la Y en 60 para que el siguiente nivel se dibuje 60 espacios más abajo
+                    }
+                    else
+                    {
+                        xo += (2 * tam); //Si en cierto caso no se cumple lo anterior el nodo se móvera en x
+                    }
+
+                    i++; //Incrementando i
+                    estado = true;
+                    ec = false;
+                    tabPage1.Refresh(); //Refrescando el tabPage
+                    txtNumero.Clear();
+                    txtNumero.Focus();
+                    button1_Click_1(null, null);
                 }
 
-                i++; //Incrementando i
-                estado = true;
-                ec = false;
-                tabPage1.Refresh(); //Refrescando el tabPage
-                txtNumero.Clear();
-                txtNumero.Focus();
-                button1_Click_1(null, null);
+
+
 
             }
             catch { MessageBox.Show("Valor no Válido");}
