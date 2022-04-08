@@ -31,13 +31,13 @@ namespace Ejercicio_Guía_8
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOrdenar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.tbHeap = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnOrdenar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tbHeap.SuspendLayout();
             this.SuspendLayout();
@@ -55,28 +55,40 @@ namespace Ejercicio_Guía_8
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnOrdenar);
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.btnAgregar);
             this.groupBox1.Controls.Add(this.txtNumero);
             this.groupBox1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(161, 81);
+            this.groupBox1.Location = new System.Drawing.Point(226, 81);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(668, 104);
+            this.groupBox1.Size = new System.Drawing.Size(557, 104);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Controles";
             // 
+            // btnOrdenar
+            // 
+            this.btnOrdenar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenar.Location = new System.Drawing.Point(895, 38);
+            this.btnOrdenar.Name = "btnOrdenar";
+            this.btnOrdenar.Size = new System.Drawing.Size(20, 19);
+            this.btnOrdenar.TabIndex = 5;
+            this.btnOrdenar.Text = "Ordenar";
+            this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Visible = false;
+            this.btnOrdenar.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // btnEliminar
             // 
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(540, 37);
+            this.btnEliminar.Location = new System.Drawing.Point(424, 37);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(99, 44);
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnLimpiar
             // 
@@ -127,22 +139,12 @@ namespace Ejercicio_Guía_8
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
             // 
-            // btnOrdenar
-            // 
-            this.btnOrdenar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenar.Location = new System.Drawing.Point(421, 37);
-            this.btnOrdenar.Name = "btnOrdenar";
-            this.btnOrdenar.Size = new System.Drawing.Size(99, 44);
-            this.btnOrdenar.TabIndex = 5;
-            this.btnOrdenar.Text = "Ordenar";
-            this.btnOrdenar.UseVisualStyleBackColor = true;
-            this.btnOrdenar.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 669);
+            this.Controls.Add(this.btnOrdenar);
             this.Controls.Add(this.tbHeap);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);

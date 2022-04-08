@@ -132,18 +132,18 @@ namespace Ejercicio_Guía_8
             int x = Arreglo.Length;
 
             for (int i = ((x) / 2); i > 0; i--) 
-                Max_Num(arreglo_numeros, x, i, ref Arreglo);
+                Min_Num(arreglo_numeros, x, i, ref Arreglo);
 
         }
 
         //Para un número minimo en heap
-        public void Max_Num(int[] a, int x, int indice, ref Button[] botones)
+        public void Min_Num(int[] a, int x, int indice, ref Button[] botones)
         {
             int izquierdo = (indice * 2);
             int derecho = (indice * 2) + 1;
             int mayor = 0;
 
-            if (izquierdo < x && a[izquierdo] > a[indice])
+            if (izquierdo <x && a[izquierdo] < a[indice])
             {
                 mayor = izquierdo;
             }
@@ -152,12 +152,46 @@ namespace Ejercicio_Guía_8
                 mayor = indice;
             }
 
-            if (derecho < x && a[derecho] > a[mayor])
+            if (derecho < x && a[derecho] < a[mayor])
             {
                 mayor = derecho;
             }
 
             if(mayor != indice) // Si el menor es distinto del indice
+            {
+                int temp = a[indice]; //Valor indice será el temporal
+                a[indice] = a[mayor]; //El menor se almacena en la posición del indice
+                a[mayor] = temp; //El temporal se almacena en el menor
+
+                intercambio(ref Arreglo, mayor, indice); //Llamando al método intercambio
+                Min_Num(a, x, mayor, ref botones); //Llamada recursiva a Max_num
+
+            }
+
+        }
+
+        //Para un número maximo en heap
+        public void Max_Num(int[] a, int x, int indice, ref Button[] botones)
+        {
+            int izquierdo = (indice * 2);
+            int derecho = (indice * 2) + 1;
+            int mayor = 0;
+
+            if (izquierdo < x && a[izquierdo] < a[indice])
+            {
+                mayor = izquierdo;
+            }
+            else
+            {
+                mayor = indice;
+            }
+
+            if (derecho < x && a[derecho] < a[mayor])
+            {
+                mayor = derecho;
+            }
+
+            if (mayor != indice) // Si el menor es distinto del indice
             {
                 int temp = a[indice]; //Valor indice será el temporal
                 a[indice] = a[mayor]; //El menor se almacena en la posición del indice
@@ -207,6 +241,7 @@ namespace Ejercicio_Guía_8
                 tabPage1.Refresh(); //Refrescando el tabPage
                 txtNumero.Clear();
                 txtNumero.Focus();
+                button1_Click_1(null, null);
 
             }
             catch { MessageBox.Show("Valor no Válido");}
@@ -245,7 +280,8 @@ namespace Ejercicio_Guía_8
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        {
+        { 
+
             if (i == 1)
             {
                 MessageBox.Show("No hay elementos que ordenar");
@@ -279,6 +315,14 @@ namespace Ejercicio_Guía_8
         {
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+           
+
+
+
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -286,6 +330,39 @@ namespace Ejercicio_Guía_8
             xo = tam; //El valor inicial de x será la mitad del ancho del tabpage
             yo = 20; //El valor inicial en y será de 20
             txtNumero.Focus(); //Para hacer un focus
+        }
+
+        public void Ordenar_Datos()
+        {
+
+            if (i == 1)
+            {
+                MessageBox.Show("No hay elementos que ordenar");
+            }
+
+            else
+            {
+                btnAgregar.Enabled = false;
+                btnLimpiar.Enabled = false;
+                btnOrdenar.Enabled = false;
+                this.Cursor = Cursors.WaitCursor;
+
+                if (!ec)
+                {
+                    Heap_Num(); //Llamando el heap num
+                }
+                else
+                {
+                    HPN(); //Llamando el hpn
+                }
+
+                //Se habilita todo de nuevo
+                btnAgregar.Enabled = true;
+                btnLimpiar.Enabled = true;
+                btnOrdenar.Enabled = true;
+                this.Cursor = Cursors.Default;
+
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
